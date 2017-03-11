@@ -1,0 +1,37 @@
+title: straightkey
+
+{% extends "project.html" %}
+{% block body %}
+
+<section>
+	straightkey is an sms app for the visually impaired that uses morse code. volume buttons and swipes are used to navigate, notifications and onscreen text are read back in morse code through vibration, and text is entered by tapping morse code.
+</section>
+<section>
+	<p>
+		straightkey was built overnight at a hackathon, and we do not have the resources to maintain a public release ¯\_(ツ)_/¯
+	</p>
+	<a href="http://devpost.com/software/straightkey" target="_blank">read more about straightkey</a>
+</section>
+<section>
+	<figure>
+		<div class="row">
+			<div><img src="{% static '/images/straightkey/android/onboard.png' %}"></div>
+			<div><img src="{% static '/images/straightkey/android/home.png' %}"></div>
+		</div>
+		<div class="row">
+			<div><img src="{% static '/images/straightkey/android/thread.png' %}"></div>
+			<div><img src="{% static '/images/straightkey/android/reply.png' %}"></div>
+		</div>
+		<figcaption>android</figcaption>
+	</figure>
+	<figure>
+		<div class="row">
+			<div><img src="{% static '/images/straightkey/wear/home.png' %}"></div>
+			<div><img src="{% static '/images/straightkey/wear/thread.png' %}"></div>
+			<div><img src="{% static '/images/straightkey/wear/reply.png' %}"></div>
+		</div>
+		<figcaption>android wear</figcaption>
+	</figure>
+</section>
+
+{% endblock body %}

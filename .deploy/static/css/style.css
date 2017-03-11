@@ -1,0 +1,134 @@
+/* Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0} 
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* global */
+
+html {
+	height: 100%;
+	overflow-x: hidden;
+	-webkit-text-size-adjust: none;
+}
+
+html, body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+#wrapper {
+	width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#wrapper > main:not(:first-child), #wrapper > article:not(:first-child) {
+	overflow-x: hidden;
+}
+
+body {
+	font: 13px/20px "letter-gothic-std", monospace;
+	color: #5603ad;
+	background: #c2f8cb linear-gradient(-180deg, #f0fff1 0%, #c2f8cb 100%) no-repeat fixed;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
+}
+
+ul {
+	list-style-type: none;
+}
+
+button {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	font: bold 13px/20px "letter-gothic-std", monospace;
+	color: #5603ad;
+	cursor: pointer;
+}
+
+img, video {
+	max-width: 100%;
+	display: block;
+}
+
+time {
+	display: block;
+}
+
+/* local */
+
+.links {
+	margin: 20px 0 40px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.links > * {
+	max-width: 168px;
+	margin-right: 24px;
+	flex-shrink: 0;
+}
+
+.inner {
+	margin-left: 24px;
+}
+
+main > article, section, section > figure:not(:first-child) {
+	margin-top: 40px;
+}
+
+.body > * {
+	margin-top: 20px;
+}
+
+div.row {
+	display: flex;
+}
+
+.row:not(:first-child) {
+	margin-top: 2px;
+}
+
+.row:not(.song) > *:not(:first-child) {
+	margin-left: 2px;
+}
+
+.song figure {
+	width: 118px;
+	flex-grow: 0;
+	order: -1;
+}
+
+/* desktop */
+
+@media (min-width: 704px) {
+	
+	#wrapper > main, #wrapper > article {
+		width: 512px;
+		margin-left: 24px;
+	}
+
+	#wrapper > *:nth-child(2) {
+		margin-left: 192px;
+	}
+
+	nav {
+		position: fixed;
+		width: 168px;
+	}
+
+	.links {
+		display: initial;
+		margin: 0;
+	}
+
+	.links > * {
+		margin: 20px 0 0;
+	}
+
+}

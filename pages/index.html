@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main>
+	<h1>latest</h1>
+	{% for post in blog %}
+		<article>
+			<header>
+				<a href="/{{ post.path }}">{{ post.title }}</a>
+				<time>{{ post.date|date:"Y b j" }}</time>
+			</header>
+			<div class="body">
+				{{ post.body }}
+			</div>
+		</article>
+	{% endfor %}
+</main>
+
+{% endblock content %}

@@ -1,0 +1,6 @@
+{
+    "aws-access-key": "AKIAIOTSYLJK7SRGPDXA",
+    "aws-bucket-name": "www.imogen.fyi",
+    "aws-bucket-website": "www.imogen.fyi.s3-website-us-east-1.amazonaws.com",
+    "port": 8857
+}

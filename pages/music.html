@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main>
+	<h1>music</h1>
+	<section>
+		<div class="song row">
+			<div>
+				<h2>bitters (from <a href="http://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com/album/exhale-exhale" target="_blank">exhale exhale</a>)</h2>
+				<button onclick="playSong(5)" id="ctrl5">play</button> • 
+				<a href="http://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com/album/exhale-exhale" target="_blank">full ep on bandcamp</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/exhale exhale.jpg' %}">
+			</figure>
+		</div>
+		<div class="song row">
+			<div>
+				<h2>tension</h2>
+				<button onclick="playSong(4)" id="ctrl4">play</button> • 
+				<a href="{% static '/music/tension.mp3' %}" target="_blank">buy</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/tension.jpg' %}">
+			</figure>
+		</div>
+		<div class="song row">
+			<div>
+				<h2>folds</h2>
+				<button onclick="playSong(3)" id="ctrl3">play</button> • 
+				<a href="http://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com/track/tension" download target="_blank">download</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/folds.jpg' %}">
+			</figure>
+		</div>
+		<div class="song row">
+			<div>
+				<h2>fix</h2>
+				<button onclick="playSong(2)" id="ctrl2">play</button> • 
+				<a href="{% static '/music/fix.mp3' %}" download target="_blank">download</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/fix.jpg' %}">
+			</figure>
+		</div>
+		<div class="song row">
+			<div>
+				<h2>ghost story</h2>
+				<button onclick="playSong(1)" id="ctrl1">play</button> • 
+				<a href="{% static '/music/ghost story.mp3' %}" download target="_blank">download</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/ghost story.jpg' %}">
+			</figure>
+		</div>
+		<div class="song row">
+			<div>
+				<h2>get low</h2>
+				<button onclick="playSong(0)" id="ctrl0">play</button> • 
+				<a href="{% static '/music/get low.mp3' %}" download target="_blank">download</a>
+			</div>
+			<figure>
+				<img src="{% static '/images/music/get low.jpg' %}">
+			</figure>
+		</div>
+	</section>
+	<section>
+		<p><a href="https://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com" target="_blank">bandcamp</a></p>
+		<p><a href="https://soundcloud.com/imogenic" target="_blank">soundcloud</a></p>
+	</section>
+</main>
+
+<audio preload="metadata">
+	<source src="{% static '/music/get low.mp3' %}" type="audio/mpeg">
+</audio>
+<audio preload="metadata">
+	<source src="{% static '/music/ghost story.mp3' %}" type="audio/mpeg">
+</audio>
+<audio preload="metadata">
+	<source src="{% static '/music/fix.mp3' %}" type="audio/mpeg">
+</audio>
+<audio preload="metadata">
+	<source src="{% static '/music/folds.mp3' %}" type="audio/mpeg">
+</audio>
+<audio preload="metadata">
+	<source src="{% static '/music/tension.mp3' %}" type="audio/mpeg">
+</audio>
+<audio preload="metadata">
+	<source src="{% static '/music/bitters.mp3' %}" type="audio/mpeg">
+</audio>
+
+{% endblock content %}
+{% block scripts %}
+<script>
+	var songs = document.getElementsByTagName("audio");
+	function playSong(a) {
+		for(i=0; i<songs.length; i++) {
+			btn = document.getElementById("ctrl" + i);
+			btn.innerHTML = "play";
+			btn.setAttribute("onclick", "playSong("+i.toString()+")")
+			songs[i].pause();
+			if (i != a) {
+				//have not tested this conditional but it should work
+				songs[i].currentTime = 0;
+			}
+		}
+		btn = document.getElementById("ctrl" + a);
+		btn.setAttribute("onclick", "pauseSong("+a.toString()+")");
+		btn.innerHTML = "pause";
+		songs[a].play();
+	}
+	function pauseSong(a) {
+		btn = document.getElementById("ctrl" + a);
+		btn.setAttribute("onclick", "playSong("+a.toString()+")");
+		btn.innerHTML = "play";
+		songs[a].pause();
+	}
+</script>
+{% endblock scripts %}

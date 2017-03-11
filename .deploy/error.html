@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta id="viewport" name="viewport" content ="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png' %}" sizes="192x192"  href="/static/images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png' %}" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/static/js/manifest.json">
+	<meta name="msapplication-TileColor" content="#5603ad">
+	<meta name="msapplication-TileImage" content="/static/images/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#5603ad">
+
+	<script src="https://use.typekit.net/pne2lwk.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+	<link rel="stylesheet" href="/static/css/style.css">
+
+	
+	<title>imogen</title>
+	
+
+</head>
+<body>
+<div id="wrapper">
+	<nav>
+		<header>
+			<a href="/index.html">imogen olsen</a>
+			<p>designer / musician / photographer</p>
+		</header>
+		<div class="links">
+			<ul>
+				<li><a href="/index.html">latest</a></li>
+				<li><a href="/about.html">about</a></li>
+			</ul>
+			<ul>work:
+				<li><ul>software /
+					
+					<li class="inner"><a href="/software/fresco.html">fresco</a></li>
+					
+					<li class="inner"><a href="/software/fresco_substance.html">substance</a></li>
+					
+					<li class="inner"><a href="/software/straightkey.html">straightkey</a></li>
+					
+				</ul></li>
+				<li><ul>photography /
+					
+					<li class="inner"><a href="/photos/millionsmarch.html">millions march</a></li>
+					
+					<li class="inner"><a href="/photos/music_concert.html">concert</a></li>
+					
+					<li class="inner"><a href="/photos/music_promo.html">promo</a></li>
+					
+					<li class="inner"><a href="/photos/portrait.html">portrait</a></li>
+					
+				</ul></li>
+				<li><a href="/music.html">music</a></li>
+			</ul>
+			<ul>
+				contact:
+				<li><a href="http://90s.today/">twitter</a></li>
+				<li><a href="mailto:im@imogen.nyc">mail</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		
+		// Add the missing url to the text
+		$("#url").text(window.location.pathname);
+		
+		// Fix the css locations dynamically
+		$("head link").each(function() {
+			for (var i=0; i<window.location.pathname.split(/\//g).length-2; i++)
+				$(this).attr("href", "../" + $(this).attr("href"));
+		});
+		
+	})
+</script>
+
+<p>
+	Sorry the page <b id="url"></b> could not be found on this server.
+</p>
+
+
+	
+		<!--FAR TOO LAZY TO EXPORT RETINA IMAGES RN
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="/static/js/main.js"></script>-->
+		<script>
+			function snake() {
+				var viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+				var elements = document.querySelectorAll("#wrapper > *:not(script)");
+				var last = elements[elements.length-1];
+				var style = last.currentStyle || window.getComputedStyle(last);
+				var page_width = last.offsetWidth + parseFloat(style.marginLeft);
+				var iterations = 0;
+				while (page_width < viewport_width) {
+					iterations++;
+					var clone = last.cloneNode(true);
+					var body = document.getElementById("wrapper");
+					body.insertBefore(clone);
+					clone.style.marginLeft = 24 + page_width + "px";
+					clone.style.position = "absolute";
+					clone.style.top = "-" + Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * iterations + "px";
+					var elements = document.querySelectorAll("#wrapper > *:not(script)");
+					var last = elements[elements.length-1];
+					var style = last.currentStyle || window.getComputedStyle(last);
+					var page_width = last.offsetWidth + parseFloat(style.marginLeft);
+				}
+				return;
+			}
+			snake();
+			if (window.attachEvent) { //this should doesn't work but it doesn't
+				window.attachEvent('onresize', snake());
+			} else if (window.addEventListener) {
+				window.addEventListener('resize', snake());
+			} else { //tfw no js
+			}
+		</script>
+	
+</div>
+</body>
+</html>

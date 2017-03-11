@@ -1,0 +1,63 @@
+title: fresco
+
+{% extends "project.html" %}
+{% block body %}
+
+<section>
+	fresco is a social platform for citizen photojournalism. photographers share galleries on fresco when witnessing newsworthy events, or in response to assignments posted by news outlets. news outlets can license any content, paying the photographer and crediting them with a byline.
+</section>
+<section>
+	<p><a href="https://fresconews.com" target="_blank">website</a></p>
+	<p><a href="https://itunes.apple.com/us/app/id872040692" target="_blank">app store</a></p>
+	<p><a href="https://play.google.com/store/apps/details?id=com.fresconews.fresco" target="_blank">play store</a></p>
+	<p><a href="https://www.wired.com/2016/03/happen-now-theres-demand-economy-photojournalists/" target="_blank">wired article</a></p>
+</section>
+<section>
+	<figure>
+		<img class="row" src="{% static '/images/fresco/identity/team.jpg' %}">
+		<div class="row">
+			<video width="100%" controls>
+				<source src="{% static '/video/fresco/identity/la launch.mp4' %}" type="video/mp4">
+			</video>
+		</div>
+		<figcaption>identity</figcaption>
+	</figure>
+	<figure>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/ios/following.png' %}"></div>
+			<div><img src="{% static '/images/fresco/ios/stories.png' %}"></div>
+		</div>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/ios/assignments alt.png' %}"></div>
+			<div><img src="{% static '/images/fresco/ios/assignment scrolled.png' %}"></div>
+		</div>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/ios/camera-p video.png' %}"></div>
+			<div><img src="{% static '/images/fresco/ios/gallery self sold-multi status.png' %}"></div>
+		</div>
+		<figcaption>ios</figcaption>
+	</figure>
+	<figure>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/android/following.png' %}"></div>
+			<div><img src="{% static '/images/fresco/android/stories.png' %}"></div>
+		</div>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/android/assignments alt.png' %}"></div>
+			<div><img src="{% static '/images/fresco/android/assignment scrolled.png' %}"></div>
+		</div>
+		<div class="row">
+			<div><img src="{% static '/images/fresco/android/camera-p video.png' %}"></div>
+			<div><img src="{% static '/images/fresco/android/gallery self sold-multi status.png' %}"></div>
+		</div>
+		<figcaption>android</figcaption>
+	</figure>
+	<figure>
+		<div>
+			<div><img src="{% static '/images/fresco/web/assignments.png' %}"></div>
+		</div>
+		<figcaption>web (prototype)</figcaption>
+	</figure>
+</section>
+
+{% endblock body %}
