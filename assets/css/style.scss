@@ -5,13 +5,21 @@ html {
 	font-family: "Space Mono", monospace;
 	font-size: 13px;
 	color: #0c090d;
+	overflow-x: hidden;
+}
+* {
+	box-sizing: border-box;
 }
 
 //head
-header {
+body > header {
 	width: 100%;
+	padding: 8px 12px;
 	display: flex;
 	justify-content: space-between;
+}
+nav {
+	padding: 0 4px;
 }
 #button-design { color: #e01a4f; }
 #button-photo {	color: #f15946; }
@@ -20,15 +28,27 @@ header {
 
 //design
 #design {
-	ul {
+	section {
 		width: 640px;
 		margin: 0 auto;
+	}
+	header {
+		line-height: 48px;
+	}
+	ul {
+		margin: 0 -8px;
 		padding: 0;
+		display: flex;
+		flex-wrap: none;
 	}
 	li {
+		margin: 0 8px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		&:hover .card {
+			box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
+		}
 	}
 	.card {
 		order: -1;
@@ -47,7 +67,7 @@ header {
 	&.button {
 		// layout
 		display: inline-block;
-		margin: 6px 8px;
+		margin: 6px 4px;
 		padding: 0 8px;
 		min-width: 64px;
 		// strip defaults
@@ -63,6 +83,7 @@ header {
 		border-radius: 2px;
 		overflow: hidden;
 		box-shadow: 0 2px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.05);
+		transition: box-shadow .15s;
 	}
 }
 

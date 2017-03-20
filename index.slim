@@ -11,7 +11,7 @@ html
 		<link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet">
 	body
 		header
-			h1 imogen
+			a.c.button href="#home" imogen
 			nav
 				a.c.button#button-design href="#design" design
 				a.c.button#button-photo href="#photo" photo
@@ -19,18 +19,30 @@ html
 			a.c.button#button-contact href="#contact" contact
 		main
 			section#design
-				ul#design-product
-					| product
-					li
-						a.c.button href="#design-product-fresco" fresco
-						div.c.card
-							img src="@path scrot-fresco"/
-					li (real)
-					li (zilpapp)
-					li (straightkey)
-					li (real)
-					li (chrome)
-				ul#design-graphic
+				section#design-product
+					header product
+					ul
+						li
+							a.c.button href="#design-product-fresco" fresco
+							div.c.card
+								img src="@path thumb-fresco"/
+						li
+							a.c.button href="#design-product-beanthere" beanthere
+							div.c.card
+								img src="@path thumb-beanthere"/
+						li
+							a.c.button href="#design-product-zilpapp" zilpapp
+							div.c.card
+								img src="@path thumb-zilpapp"/
+						li
+							a.c.button href="#design-product-real" real
+							div.c.card
+								img src="@path thumb-real"/
+						li
+							a.c.button href="#design-product-straightkey" straightkey
+							div.c.card
+								img src="@path thumb-straightkey"/
+				section#design-graphic
 					| graphic
 					li (fresco)
 					li (imogen)
