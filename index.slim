@@ -1,0 +1,46 @@
+doctype html
+html
+	<!-- @reload -->
+	head
+		title imogen
+		meta name="keywords" content="creative director,product designer,ui designer,ux designer"
+		meta name="author" content="Imogen Olsen"
+		link rel="icon" type="image/png" href="@path favicon.ico"
+		link rel="stylesheet" type="text/css" href="@path normalize.css"
+		link rel="stylesheet" type="text/css" href="@path style.css"
+		<link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet">
+	body
+		header
+			h1 imogen
+			nav
+				a.c.button#button-design href="#design" design
+				a.c.button#button-photo href="#photo" photo
+				a.c.button#button-music href="#music" music
+			a.c.button#button-contact href="#contact" contact
+		main
+			section#design
+				ul#design-product
+					| product
+					li
+						a.c.button href="#design-product-fresco" fresco
+						div.c.card
+							img src="@path scrot-fresco"/
+					li (real)
+					li (zilpapp)
+					li (straightkey)
+					li (real)
+					li (chrome)
+				ul#design-graphic
+					| graphic
+					li (fresco)
+					li (imogen)
+					li (cuddle)
+			section#photo
+				ul#photo-commercial
+					li (galleries)
+				ul#editorial
+					li (galleries)
+				ul#personal
+					li (galleries)
+			section#music
+				li (players)

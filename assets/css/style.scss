@@ -1,31 +1,91 @@
-/* Write your CSS! */
-
+//global
 html {
-  height: 100%;
+	height: 100%;
+	background-color: #fafafa;
+	font-family: "Space Mono", monospace;
+	font-size: 13px;
+	color: #0c090d;
 }
 
-body {
-  background: url(apple-touch-icon.png) no-repeat center center;
+//head
+header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
+#button-design { color: #e01a4f; }
+#button-photo {	color: #f15946; }
+#button-music {	color: #f9c22e; }
+#button-contact { color: #53b3cb; }
+
+//design
+#design {
+	ul {
+		width: 640px;
+		margin: 0 auto;
+		padding: 0;
+	}
+	li {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.card {
+		order: -1;
+		height: 512px;
+		img { height: 100%; }
+	}
+}
+
+//hide
+#design-graphic, #photo, #music {
+	display: none;
+}
+
+//generic components
+.c {
+	&.button {
+		// layout
+		display: inline-block;
+		margin: 6px 8px;
+		padding: 0 8px;
+		min-width: 64px;
+		// strip defaults
+		text-decoration: inherit;
+		color: inherit;
+		// style
+		font-weight: bold;
+		font-size: 14px;
+		line-height: 36px;
+		text-align: center;
+	}
+	&.card {
+		border-radius: 2px;
+		overflow: hidden;
+		box-shadow: 0 2px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.05);
+	}
+}
+
+/* boilerplate
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  
-  /* Styles for mobile */
+
+  // Styles for mobile
 
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 
-  /* Styles for tablet */
+  // Styles for tablet
 
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
 
-  /* Don't forget your Retina CSS! */
-  
+  // Don't forget your Retina CSS!
+
   body {
     background-size: 72px 72px;
   }
 
-}
+} */
