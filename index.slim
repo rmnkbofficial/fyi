@@ -8,7 +8,7 @@ html
 		link rel="icon" type="image/png" href="@path favicon.ico"
 		link rel="stylesheet" type="text/css" href="@path normalize.css"
 		link rel="stylesheet" type="text/css" href="@path style.css"
-		link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet"
+		link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i"
 	body
 		header
 			a.c.button href="" imogen
@@ -20,8 +20,8 @@ html
 		main
 			section#design
 				section#design-product
-					header product
-					ul
+					header.c.header product
+					ul.cards
 						li
 							a.c.button href="#design-product-fresco" fresco
 							div.c.card
@@ -56,30 +56,45 @@ html
 					li (galleries)
 			section#music
 				li (players)
+		//article.c.dialog
+		//	header
+		//		span.c.button#button-close close
+		//		h2 title
+		//	section
+		//		p Fresco is a video sharing platform that allows citizen journalists to respond to assignments and sell their content to news outlets.
+		//		p As chief design officer, I led product ideation and strategy and was the sole product designer for all platforms.
+		//		div
+		//			span see also:
+		//			a.c.button fresco identity
 		script src="@path jquery-1.8.3.min.js"
 		script src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"
 		javascript:
 			$(document).ready(function() {
 				//init
-				$("#design-product li").each(function() {
-					if ($(this).position().left + $(this).width() >= 640) {
+				$(".cards li").each(function() {
+					if ($(this).position().left + $(this).width() >= $(this).closest("section").width()) {
 						$(this).addClass("inactive");
 					};
 				});
+				//close dialog
+				$("article").on("click", "#button-close", function() {
+					$("article").addClass("inactive");
+					$("body").on("transitionend", ".article", function() {
+						$("article").css("display","none");
+					});
+				});
 				//move cards
-				$("body").on("click", ".inactive", function() {
-					//get target position
+				$(".cards").on("click", ".inactive", function() {
+					//get target and current transformX()
 					var transform_change = $(this).position().left;
-					//get current position
 					var current_transform = parseInt($(this).siblings(0).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
-					//set new position
-					$(this).siblings().andSelf().css("transform", "translateX(" + (current_transform - transform_change) + "px)");
-					//update styles
-					$(this).siblings().andSelf().each(function() {
+					//set new transformX() and styles
+					$(this).siblings().andSelf().each( function() {
+						$(this).css("transform", "translateX(" + (current_transform - transform_change) + "px)");
 						$(this).on("transitionend", function() {
 							if ($(this).position().left + $(this).width() >= 640 || $(this).position().left < 0) {
-								$(this).addClass("inactive");
+							$(this).addClass("inactive");
 							} else {
 								$(this).removeClass("inactive");
 							};
