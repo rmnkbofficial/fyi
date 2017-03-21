@@ -12,14 +12,13 @@ html {
 }
 .inactive {
 	opacity: .3;
-	transition: opacity .3s;
 	&:hover {
 		opacity: .5
 	}
 }
 li {
 	transform: translateX(0px);
-	transition: transform .2s;
+	transition: transform .3s, opacity .3s;
 }
 
 //head
@@ -102,7 +101,7 @@ nav {
 	}
 }
 
-/* boilerplate
+/* shitty boilerplate shit
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 

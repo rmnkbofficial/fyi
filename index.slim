@@ -75,10 +75,6 @@ html
 					current_transform = current_transform || 0
 					//set new position
 					$(this).siblings().andSelf().css("transform", "translateX(" + (current_transform - transform_change) + "px)");
-					/*//other set new position
-					$(this).siblings().andSelf().animate({
-						left: "-=" + transform_change
-					}, 300, function() {} );*/
 					//update styles
 					$(this).siblings().andSelf().each(function() {
 						$(this).on("transitionend", function() {
