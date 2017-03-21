@@ -12,7 +12,7 @@ html
 	body
 		header
 			a.c.button href="" imogen
-			nav
+			//nav
 				a.c.button#button-design href="#design" design
 				a.c.button#button-photo href="#photo" photo
 				a.c.button#button-music href="#music" music
@@ -56,33 +56,35 @@ html
 					li (galleries)
 			section#music
 				li (players)
-		//article.c.dialog
-		//	header
-		//		span.c.button#button-close close
-		//		h2 title
-		//	section
-		//		p Fresco is a video sharing platform that allows citizen journalists to respond to assignments and sell their content to news outlets.
-		//		p As chief design officer, I led product ideation and strategy and was the sole product designer for all platforms.
-		//		div
-		//			span see also:
-		//			a.c.button fresco identity
+		article.c.dialog.inactive style="display:none;"
 		script src="@path jquery-1.8.3.min.js"
 		script src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"
 		javascript:
-			$(document).ready(function() {
-				//init
+			function setInactiveCards() {
 				$(".cards li").each(function() {
-					if ($(this).position().left + $(this).width() >= $(this).closest("section").width()) {
+					if ($(this).position().left + $(this).width() >= $(this).closest("section").width() || $(this).position().left < 0) {
 						$(this).addClass("inactive");
+					} else {
+						$(this).removeClass("inactive");
 					};
 				});
-				//close dialog
-				$("article").on("click", "#button-close", function() {
-					$("article").addClass("inactive");
-					$("body").on("transitionend", ".article", function() {
-						$("article").css("display","none");
-					});
-				});
+			};
+			function openDialog(target_hash) {
+				target_name = target_hash.split("#")[1];
+				$("article").load("pages/" + target_name + ".html");
+				$("article").css("display", "");
+				setTimeout(function() {
+					$("article").removeClass("inactive");
+					setInactiveCards();
+				}, 20);
+			};
+			$(document).ready(function() {
+				//open dialog if url is fancy
+				var hash = window.location.hash;
+				if (hash) { openDialog(hash); }
+				//init
+				setInactiveCards();
+				$.ajax({ headers: { "Cache-Control": "max-age=0" } })
 				//move cards
 				$(".cards").on("click", ".inactive", function() {
 					//get target and current transformX()
@@ -93,12 +95,25 @@ html
 					$(this).siblings().andSelf().each( function() {
 						$(this).css("transform", "translateX(" + (current_transform - transform_change) + "px)");
 						$(this).on("transitionend", function() {
-							if ($(this).position().left + $(this).width() >= 640 || $(this).position().left < 0) {
-							$(this).addClass("inactive");
-							} else {
-								$(this).removeClass("inactive");
-							};
+							setInactiveCards();
+							$(this).off("transitionend", false);
 						});
+					});
+				});
+				//open dialog
+				$(".cards").on("click", "a", function() {
+					page_id = $(this).attr("href");
+					openDialog(page_id);
+				});
+				//close dialog
+				$("article").on("click", "#button-close", function() {
+					$("article").addClass("inactive");
+					$("body").on("transitionend", "article", function() {
+						$("article").css("display","none");
+						$("body").off("transitionend", "article");
+						setTimeout(function() {
+							history.pushState(null, null, "#");
+						}, 10);
 					});
 				});
 			});

@@ -9,12 +9,7 @@ html {
 	perspective: 256px;
 	transform-style: preserve-3d;
 }
-* {
-	box-sizing: border-box;
-}
-main {
-	z-index: 2;
-}
+* { box-sizing: border-box; }
 
 //head
 body > header {
@@ -44,9 +39,6 @@ nav {
 		width: 640px;
 		margin: 0 auto;
 	}
-	header {
-		line-height: 48px;
-	}
 }
 
 //cards
@@ -64,6 +56,7 @@ nav {
 		flex-direction: column;
 		align-items: flex-start;
 		.button {
+			margin: 6px 16px;
 			&:after {
 				display: inline-block;
 				margin-left: 8px;
@@ -75,9 +68,7 @@ nav {
 				opacity: .3;
 				transition: opacity .3s;
 			}
-			&:hover:after {
-				opacity: .7;
-			}
+			&:hover:after { opacity: .7; }
 		}
 		.card {
 			order: -1;
@@ -86,9 +77,7 @@ nav {
 		}
 		&.inactive {
 			opacity: .3;
-			&:hover {
-				opacity: .5
-			}
+			&:hover { opacity: .5; }
 		}
 		&:hover {
 			cursor: pointer;
@@ -110,29 +99,45 @@ article {
 	transform-style: preserve-3d;
 	transition-timing-function: ease-in;
 	transition: transform .3s, opacity .3s, box-shadow .3s;
-	header {
-		width: 100%;
-		padding: 8px 12px;
-		display: flex;
-		justify-content: space-between;
-		h2 {
-			flex: 1;
-			text-align: center;
-		}
-	}
 	&.inactive.dialog {
 		transform: translate3d(0, -8px, -24px);
 		transition-timing-function: ease-out;
 		opacity: 0;
 		box-shadow: 0 0 0 rgba(0,0,0,.1), 0 0 0 rgba(0,0,0,.05);
 	}
+	div {
+		height: 100%;
+		position: relative;
+		overflow: auto;
+	}
+	header {
+		position: absolute;
+		width: 100%;
+		padding: 8px 12px;
+		h2 {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 20px;
+			line-height: 64px;
+		}
+	}
+	main { margin-top: 64px; }
+	section {
+		width: 640px;
+		margin: 0 auto;
+		padding: 8px 24px;
+	}
 }
 
 //generic components
 .c {
 	&.header {
+		padding: 0 24px;
 		opacity: .7;
 		font-weight: bold;
+		line-height: 48px;
 	}
 	&.button {
 		// layout
@@ -148,6 +153,7 @@ article {
 		font-size: 14px;
 		line-height: 36px;
 		text-align: center;
+		cursor: pointer;
 	}
 	&.card {
 		border-radius: 2px;
