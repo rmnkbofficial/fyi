@@ -10,6 +10,17 @@ html {
 * {
 	box-sizing: border-box;
 }
+.inactive {
+	opacity: .3;
+	transition: opacity .3s;
+	&:hover {
+		opacity: .5
+	}
+}
+li {
+	transform: translateX(0px);
+	transition: transform .2s;
+}
 
 //head
 body > header {
@@ -36,6 +47,7 @@ nav {
 		line-height: 48px;
 	}
 	ul {
+		position: relative;
 		margin: 0 -8px;
 		padding: 0;
 		display: flex;
@@ -46,8 +58,11 @@ nav {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		&:hover .card {
-			box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
+		&:hover {
+			cursor: pointer;
+			.card {
+				box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
+			}
 		}
 	}
 	.card {
