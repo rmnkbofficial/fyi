@@ -9,7 +9,12 @@ html {
 	perspective: 256px;
 	transform-style: preserve-3d;
 }
+body, article > div { overflow-x: hidden; }
 * { box-sizing: border-box; }
+section {
+	width: 640px;
+	margin: 0 auto;
+}
 
 //head
 body > header {
@@ -18,36 +23,19 @@ body > header {
 	display: flex;
 	justify-content: space-between;
 }
-nav {
-	padding: 0 4px;
-	.button:not(#button-design) {
-		opacity: .5;
-		transition: opacity .3s;
-		&:hover {
-			opacity: 1;
-		}
-	}
-}
+nav { padding: 0 4px; }
 #button-design { color: #e01a4f; }
 #button-photo {	color: #f15946; }
 #button-music {	color: #f9c22e; }
 #button-contact { color: #53b3cb; }
 
-//design
-#design {
-	section {
-		width: 640px;
-		margin: 0 auto;
-	}
-}
-
 //cards
 .cards {
 	position: relative;
-	margin: 0 -8px;
+	margin: 0 -8px 24px;
 	padding: 0;
 	display: flex;
-	flex-wrap: none;
+	&.inactive { display: none; }
 	li {
 		transform: translateX(0px);
 		transition: transform .3s, opacity .3s;
@@ -55,6 +43,26 @@ nav {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		&.inactive {
+			opacity: .3;
+			&:hover {
+				opacity: .5;
+				cursor: pointer;
+			}
+		}
+		&:hover .card {
+			box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
+		}
+		&.card, .card {
+			height: 512px;
+			img { height: 100%; }
+			&.wide {
+				height: 352px;
+			}
+		}
+		.card {
+			order: -1;
+		}
 		.button {
 			margin: 6px 16px;
 			&:after {
@@ -69,21 +77,6 @@ nav {
 				transition: opacity .3s;
 			}
 			&:hover:after { opacity: .7; }
-		}
-		.card {
-			order: -1;
-			height: 512px;
-			img { height: 100%; }
-		}
-		&.inactive {
-			opacity: .3;
-			&:hover { opacity: .5; }
-		}
-		&:hover {
-			cursor: pointer;
-			.card {
-				box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
-			}
 		}
 	}
 }
@@ -105,30 +98,26 @@ article {
 		opacity: 0;
 		box-shadow: 0 0 0 rgba(0,0,0,.1), 0 0 0 rgba(0,0,0,.05);
 	}
-	div {
+	> div {
 		height: 100%;
 		position: relative;
-		overflow: auto;
-	}
-	header {
-		position: absolute;
-		width: 100%;
-		padding: 8px 12px;
-		h2 {
-			position: absolute;
+		> header {
+			position: fixed;
 			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			font-size: 20px;
-			line-height: 64px;
+			width: 100%;
+			padding: 8px 12px;
 		}
 	}
-	main { margin-top: 64px; }
-	section {
-		width: 640px;
-		margin: 0 auto;
-		padding: 8px 24px;
+	h2 {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 20px;
+		line-height: 64px;
 	}
+	main { margin-top: 64px; }
+	section:first-child { padding: 8px 24px; }
 }
 
 //generic components
@@ -138,6 +127,9 @@ article {
 		opacity: .7;
 		font-weight: bold;
 		line-height: 48px;
+	}
+	&.tabs {
+		padding: 6px 12px;
 	}
 	&.button {
 		// layout
@@ -154,6 +146,11 @@ article {
 		line-height: 36px;
 		text-align: center;
 		cursor: pointer;
+		&.inactive {
+			opacity: .5;
+			transition: opacity .3s;
+			&:hover { opacity: initial; }
+		}
 	}
 	&.card {
 		border-radius: 2px;
