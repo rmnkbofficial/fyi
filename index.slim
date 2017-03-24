@@ -16,11 +16,17 @@ html
 			a.c.button.page href="#" imogen
 			nav
 				a.c.button.page.inactive#button-design href="#page-design" design
-				a.c.button.page.inactive#button-photo href="#page-photo" photo
-				a.c.button.page.inactive#button-music href="#page-music" music
+				//a.c.button.page.inactive#button-photo href="#page-photo" photo
+				//a.c.button.page.inactive#button-music href="#page-music" music
 			a.c.button#button-contact href="#contact" contact
 		main
 			section
+				section.text
+					p hi i'm imogen
+					p i turn good ideas into good things
+					p i still need to add a bunch of things to this. in the meantime check out <a class="button" href="#design-product-straightkey"><mark class="highlight-design">straightkey,</mark></a> it's one of my favs
+					//'
+					p i'm also available for design & front-end dev work so <a class="button" href="#contact"><mark class="highlight-contact">hmu</mark></a>
 			section.inactive
 				section#design-product
 					header.c.header product
@@ -40,7 +46,7 @@ html
 						li
 							a.c.button href="#design-product-real" real
 							div.c.card: img src="@path thumb-real"
-				section#design-graphic
+				//section#design-graphic
 					| graphic
 					li (fresco)
 					li (imogen)
@@ -91,7 +97,6 @@ html
 					var target = hash.split("#")[1];
 					if (target.split("-")[0] == "page") {
 						var page_index = $(".pages .page").index($("[href='#" + target + "']"));
-						alert(page_index);
 						$(".pages .page:not(.inactive)").addClass("inactive");
 						$(".pages .page").eq(page_index).removeClass("inactive");
 						$("body > main").children("section:not('.inactive')").addClass("inactive").siblings().andSelf().eq(page_index).removeClass("inactive");
@@ -158,7 +163,7 @@ html
 					});
 				});
 				//open dialog
-				$(".cards").on("click", "a", function() {
+				$("body > main").on("click", ".button", function() {
 					target = $(this).attr("href").split("#")[1];
 					openDialog(target);
 				});
