@@ -250,8 +250,18 @@ article {
 	}
 }
 
+@media only screen and (min-width: 1024px) {
+	section { width: 896px }
+	.cards li.card.wide, .cards li .card.wide { height: 512px; }
+}
+
 @media only screen and (min-width: 1280px) {
-	section { width: 960px }
+	section { width: 1042px }
+	.cards li.card.wide, .cards li .card.wide { height: 512px; }
+}
+
+@media only screen and (min-width: 1440px) {
+	section { width: 1202px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
 

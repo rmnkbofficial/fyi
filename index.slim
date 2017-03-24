@@ -100,16 +100,36 @@ html
 				})
 				//move cards
 				$("body").on("click", ".cards .inactive", function() {
-					//get target and current transformX()
+					//get target and transform change
 					var transform_change = $(this).position().left;
-					if ($(window).width() < 768 && $(this).index() > 0 ) {
+					var target_index = $(this).index();
+					if (transform_change < 0) {
+						var section_width = $(this).closest("section").width();
+						var width = $(this).width();
+						var iterations = 0;
+						while (width < section_width) {
+							transform_change = $(this).closest(".cards").children().eq(Math.max(0, (target_index - iterations))).position().left;
+							iterations++;
+							width += $(this).closest(".cards").children().eq(target_index - iterations).width() + 16;
+						} 
+					}
+					if ($(window).width() < 768 && target_index > 0 ) {
 						transform_change -= 16;
 					}
 					var current_transform = parseInt($(this).siblings(0).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
+					var new_translate = current_transform - transform_change
+					if (transform_change > 0) {
+						var last_element = $(this).closest(".cards").children().last();
+						var offset = last_element.position().left - transform_change;
+						while (offset + 1 < $(this).closest("section").width() - last_element.width()) {
+							new_translate += 1;
+							offset += 1;
+						}
+					}
 					//set new transformX() and styles
 					$(this).siblings().andSelf().each( function() {
-						$(this).css("transform", "translateX(" + (current_transform - transform_change) + "px)");
+						$(this).css("transform", "translateX(" + (new_translate) + "px)");
 						$(this).on("transitionend", function() {
 							setInactiveCards();
 							$(this).off("transitionend", false);
