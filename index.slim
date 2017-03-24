@@ -61,9 +61,9 @@ html
 			function setInactiveCards() {
 				$(".cards li").each(function() {
 					if ($(this).position().left + $(this).width() >= $(this).closest("section").width() || $(this).position().left < 0) {
-						$(this).addClass("inactive").find(".button").prop("disabled", true);
+						$(this).addClass("inactive");//.find(".button").prop("disabled", true);
 					} else {
-						$(this).removeClass("inactive").find(".button").prop("disabled", false);
+						$(this).removeClass("inactive");//.find(".button").prop("disabled", false);
 					};
 				});
 			};
