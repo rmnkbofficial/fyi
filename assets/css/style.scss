@@ -6,7 +6,7 @@ html {
 	font-size: 13px;
 	color: #0c090d;
 	overflow-x: hidden;
-	perspective: 256;
+	perspective: 256px;
 	transform-style: preserve-3d;
 }
 body, article > div { overflow-x: hidden; }
@@ -23,9 +23,8 @@ p {
 	max-width: 592px;
 	margin: 8px auto;
 }
-textarea {
-	resize: none;
-}
+textarea { resize: none; }
+iframe { margin-bottom: 11px; }
 
 //head
 body > header {
@@ -231,6 +230,7 @@ article {
 }
 
 @media only screen and (min-width: 768px) {
+	iframe { margin-bottom: 19px; }
 	section {
 		width: 640px;
 		margin: 0 auto;
@@ -264,22 +264,22 @@ article {
 }
 
 @media only screen and (min-width: 1024px) {
-	section { width: 896px }
+	section:not(.narrow) { width: 896px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
 
 @media only screen and (min-width: 1280px) {
-	section { width: 1042px }
+	section:not(.narrow) { width: 1042px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
 
 @media only screen and (min-width: 1440px) {
-	section { width: 1202px }
+	section:not(.narrow) { width: 1202px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
 
 @media only screen and (min-width: 1920px) {
-	section { width: 1202px }
+	section:not(.narrow) { width: 1490px }
 	.cards li.card, .cards li .card {
 		height: 640px;
 		&.wide {
