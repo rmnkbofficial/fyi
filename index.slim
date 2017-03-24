@@ -60,7 +60,8 @@ html
 		javascript:
 			function setInactiveCards() {
 				$(".cards li").each(function() {
-					if ($(this).position().left + $(this).width() >= $(this).closest("section").width() || $(this).position().left < 0) {
+					var gutter = 0;
+					if ($(this).position().left + $(this).width() + gutter >= $(this).closest("section").width() || $(this).position().left < 0) {
 						$(this).addClass("inactive");//.find(".button").prop("disabled", true);
 					} else {
 						$(this).removeClass("inactive");//.find(".button").prop("disabled", false);
@@ -113,20 +114,23 @@ html
 							width += $(this).closest(".cards").children().eq(target_index - iterations).width() + 16;
 						} 
 					}
-					if ($(window).width() < 768 && target_index > 0 ) {
+					if ($(this).closest(".cards").children().first().position().left - transform_change < 0) {
 						transform_change -= 16;
 					}
 					var current_transform = parseInt($(this).siblings(0).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
-					var new_translate = current_transform - transform_change
 					if (transform_change > 0) {
 						var last_element = $(this).closest(".cards").children().last();
 						var offset = last_element.position().left - transform_change;
 						while (offset + 1 < $(this).closest("section").width() - last_element.width()) {
-							new_translate += 1;
+							transform_change -= 1;
 							offset += 1;
 						}
 					}
+					if (offset < $(this).closest("section").width() - $(this).closest(".cards").children().last().width()) {
+						transform_change += 32;
+					}
+					var new_translate = current_transform - transform_change
 					//set new transformX() and styles
 					$(this).siblings().andSelf().each( function() {
 						$(this).css("transform", "translateX(" + (new_translate) + "px)");
