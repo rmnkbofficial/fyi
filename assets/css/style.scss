@@ -222,6 +222,14 @@ article {
 	}
 }
 
+@media only screen and (min-width: 380px) {
+	.cards li.card.wide, .cards li .card.wide { height: 190px; }
+}
+
+@media only screen and (min-width: 396px) {
+	.cards li.card.wide, .cards li .card.wide { height: 200px; }
+}
+
 @media only screen and (min-width: 768px) {
 	section {
 		width: 640px;
