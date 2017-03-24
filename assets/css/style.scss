@@ -10,6 +10,9 @@ html {
 	transform-style: preserve-3d;
 }
 body, article > div { overflow-x: hidden; }
+body > main img {
+	z-index: -1;
+}
 * { box-sizing: border-box; }
 a {
 	text-decoration: none;
@@ -91,10 +94,10 @@ form {
 			}
 		}
 		&.card, .card {
-			height: 512px;
+			height: 384px;
 			img { height: 100%; }
 			&.wide {
-				height: 352px;
+				height: 180px;
 			}
 		}
 		.card {
@@ -155,6 +158,10 @@ article {
 	}
 	main { margin-top: 64px; }
 	section:first-child { padding: 8px 16px; }
+	p {
+		max-width: 640px;
+		margin: 8px auto;
+	}
 }
 
 //generic components
@@ -220,7 +227,15 @@ article {
 	}
 	.cards {
 		margin: 0 -8px 24px;
-		li .button { margin: 6px 16px; }
+		li {
+			.button { margin: 6px 16px; }
+			&.card, .card {
+				height: 512px;
+				&.wide {
+					height: 352px;
+				}
+			}
+		}
 	}
 	.c {
 		&.header { padding: 0 24px; }
@@ -232,6 +247,21 @@ article {
 		padding: 0 24px;
 		width: 320px;
 		input.c.button { margin-right: 0; }
+	}
+}
+
+@media only screen and (min-width: 1280px) {
+	section { width: 960px }
+	.cards li.card.wide, .cards li .card.wide { height: 512px; }
+}
+
+@media only screen and (min-width: 1920px) {
+	section { width: 1202px }
+	.cards li.card, .cards li .card {
+		height: 640px;
+		&.wide {
+			height: 640px;
+		}
 	}
 }
 
