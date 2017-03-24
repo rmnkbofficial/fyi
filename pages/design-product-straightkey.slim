@@ -1,22 +1,26 @@
-div style="background-color: black;\
+div style="background-color: #202020;\
 	color: white;"
 	header
 		a.c.button#button-close close
 		h2 style="color: white;" straightkey
 	main
 		section
-			p Straightkey is an SMS app for the visually impaired, that doubles as an aid for learning Morse code. The device's volume buttons can be used to navigate and, key functions are mapped to touch gestures. Notifications and focused text are vibrated.
-			p As one half of Straightkey's hackathon team, I designed the clients as they were developed, in time for judging at the end of the 24-hour work period. Straightkey won second place against a team of four developers.
-		//section
+			p Straightkey is an SMS app for the visually impaired, that doubles as an aid for learning Morse code. The device's volume buttons can be used to navigate and key functions are mapped to touch gestures. Notifications and focused text are vibrated.
+			p As one half of Straightkey's hackathon team, I designed the clients as they were developed, in time for judging at the end of the 24-hour work period. Straightkey won second place, and was the only two-person team with a podium finish.
+			p Straightkey is no longer available in the Play Store, but if you're interested in collaborating I'd love to polish and rerelease it.
+		section
+			header.c.tabs
+				a.c.button android
+				a.c.button.inactive android wear
 			ul.cards
-				li.c.card: img src="@path screenshot-fresco-ios-1"
-				li.c.card: img src="@path screenshot-fresco-ios-2"
-				li.c.card: img src="@path screenshot-fresco-ios-3"
-			ul.cards
-				li.c.card: img src="@path screenshot-fresco-ios-1"
-				li.c.card: img src="@path screenshot-fresco-ios-2"
-				li.c.card: img src="@path screenshot-fresco-ios-3"
-			ul.cards
-				li.c.card: img src="@path screenshot-fresco-ios-1"
-				li.c.card: img src="@path screenshot-fresco-ios-2"
-				li.c.card: img src="@path screenshot-fresco-ios-3"
+				li: div.c.card: img src="@path scrot-straightkey-android-onboard"
+				li: div.c.card: img src="@path scrot-straightkey-android-home"
+				li: div.c.card: img src="@path scrot-straightkey-android-thread"
+				li: div.c.card: img src="@path scrot-straightkey-android-reply"
+				li: div.c.card: img src="@path scrot-straightkey-android-new"
+				li: div.c.card: img src="@path scrot-straightkey-android-settings"
+			ul.cards.inactive
+				li: div.c.card: img src="@path scrot-straightkey-wear-home"
+				li: div.c.card: img src="@path scrot-straightkey-wear-thread"
+				li: div.c.card: img src="@path scrot-straightkey-wear-reply"
+				li: div.c.card: img src="@path scrot-straightkey-wear-new"
