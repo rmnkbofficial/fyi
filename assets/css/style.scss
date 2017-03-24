@@ -6,7 +6,7 @@ html {
 	font-size: 13px;
 	color: #0c090d;
 	overflow-x: hidden;
-	perspective: 256px;
+	perspective: 256;
 	transform-style: preserve-3d;
 }
 body, article > div { overflow-x: hidden; }
@@ -22,6 +22,7 @@ a {
 textarea {
 	resize: none;
 }
+body > main > section.inactive { display: none; }
 
 //head
 body > header {
@@ -121,11 +122,6 @@ form {
 	}
 }
 
-//hide
-#design-graphic, #photo, #music {
-	display: none;
-}
-
 //dialog
 article {
 	transform: translate3d(0, 0, 0);
@@ -159,7 +155,7 @@ article {
 	main { margin-top: 64px; }
 	section:first-child { padding: 8px 16px; }
 	p {
-		max-width: 640px;
+		max-width: 592px;
 		margin: 8px auto;
 	}
 }

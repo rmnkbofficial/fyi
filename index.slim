@@ -12,15 +12,16 @@ html
 		link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i"
 		script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"
 	body
-		header
-			a.c.button href="" imogen
-			//nav
-				a.c.button#button-design href="#design" design
-				a.c.button.inactive#button-photo href="#photo" photo
-				a.c.button.inactive#button-music href="#music" music
+		header.pages
+			a.c.button.page href="#" imogen
+			nav
+				a.c.button.page.inactive#button-design href="#page-design" design
+				a.c.button.page.inactive#button-photo href="#page-photo" photo
+				a.c.button.page.inactive#button-music href="#page-music" music
 			a.c.button#button-contact href="#contact" contact
 		main
-			section#design
+			section
+			section.inactive
 				section#design-product
 					header.c.header product
 					ul.cards
@@ -44,14 +45,14 @@ html
 					li (fresco)
 					li (imogen)
 					li (cuddle)
-			section#photo
+			section.inactive
 				ul#photo-commercial
 					li (galleries)
 				ul#editorial
 					li (galleries)
 				ul#personal
 					li (galleries)
-			section#music
+			section.inactive
 				li (players)
 		article.c.dialog.inactive style="display:none;"
 		script src="@path jquery-1.8.3.min.js"
@@ -87,13 +88,29 @@ html
 				//open dialog if url is fancy
 				var hash = window.location.hash;
 				if (hash) {
-					target = hash.split("#")[1];
-					openDialog(target);
+					var target = hash.split("#")[1];
+					if (target.split("-")[0] == "page") {
+						var page_index = $(".pages .page").index($("[href='#" + target + "']"));
+						alert(page_index);
+						$(".pages .page:not(.inactive)").addClass("inactive");
+						$(".pages .page").eq(page_index).removeClass("inactive");
+						$("body > main").children("section:not('.inactive')").addClass("inactive").siblings().andSelf().eq(page_index).removeClass("inactive");
+						setInactiveCards();
+					} else {
+						openDialog(target);
+					}
 				};
 				//cards
 				setInactiveCards();
 				//EVENTS
 				//switch tabs
+				$(".pages").on("click", ".inactive", function() {
+					var page_index = $(".pages .page").index($(this));
+					$(".pages .page:not(.inactive)").addClass("inactive");
+					$(this).removeClass("inactive");
+					$("body > main").children("section:not('.inactive')").addClass("inactive").siblings().andSelf().eq(page_index).removeClass("inactive");
+					setInactiveCards();
+				})
 				$("body").on("click", ".tabs .inactive", function() {
 					$(this).removeClass("inactive").siblings().addClass("inactive");
 					tab_index = $(this).index();
