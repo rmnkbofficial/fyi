@@ -11,10 +11,6 @@ html {
 }
 body, article > div { overflow-x: hidden; }
 * { box-sizing: border-box; }
-section {
-	width: 640px;
-	margin: 0 auto;
-}
 a {
 	text-decoration: none;
 	color: inherit;
@@ -27,7 +23,7 @@ textarea {
 //head
 body > header {
 	width: 100%;
-	padding: 8px 12px;
+	padding: 4px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -39,13 +35,15 @@ nav { padding: 0 4px; }
 
 //contact
 form {
-	margin: 72px auto 24px;
-	width: 320px;
+	margin: 64px auto 0;
+	padding: 0 16px;
+	width: 100%;
+	header.c.header { padding: 0; }
 	input, textarea {
 		background-color: transparent;
 		border: none;
 		color: inherit;
-		padding: 14px 24px;
+		padding: 14px 0;
 		font: inherit;
 		line-height: 20px;
 		transition: opacity .3s;
@@ -64,14 +62,14 @@ form {
 	}
 	input.c.button {
 		float: right;
-		margin-right: 16px;
+		margin-right: -8px;
 	}
 }
 
 //cards
 .cards {
 	position: relative;
-	margin: 0 -8px 24px;
+	margin: 0 8px 16px;
 	padding: 0;
 	display: flex;
 	&.inactive { display: none; }
@@ -82,15 +80,15 @@ form {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		&:hover .card {
+			box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
+		}
 		&.inactive {
 			opacity: .3;
 			&:hover {
 				opacity: .5;
 				cursor: pointer;
 			}
-		}
-		&:hover .card {
-			box-shadow: 0 4px 4px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.05);
 		}
 		&.card, .card {
 			height: 512px;
@@ -103,7 +101,7 @@ form {
 			order: -1;
 		}
 		.button {
-			margin: 6px 16px;
+			margin: 6px 8px;
 			&:after {
 				display: inline-block;
 				margin-left: 8px;
@@ -144,7 +142,7 @@ article {
 			position: fixed;
 			top: 0;
 			width: 100%;
-			padding: 8px 12px;
+			padding: 4px;
 		}
 	}
 	h2 {
@@ -153,27 +151,27 @@ article {
 		left: 50%;
 		transform: translateX(-50%);
 		font-size: 20px;
-		line-height: 64px;
+		line-height: 56px;
 	}
 	main { margin-top: 64px; }
-	section:first-child { padding: 8px 24px; }
+	section:first-child { padding: 8px 16px; }
 }
 
 //generic components
 .c {
 	&.header {
-		padding: 0 24px;
+		padding: 0 16px;
 		opacity: .7;
 		font-weight: bold;
 		line-height: 48px;
 	}
 	&.tabs {
-		padding: 6px 12px;
+		padding: 6px 4px;
 	}
 	&.button {
 		// layout
 		display: inline-block;
-		margin: 6px 4px;
+		margin: 6px 0;
 		padding: 0 8px;
 		min-width: 64px;
 		// strip defaults
@@ -210,14 +208,34 @@ article {
 	}
 }
 
-/* shitty boilerplate shit
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-  // Styles for mobile
-
+@media only screen and (min-width: 768px) {
+	section {
+		width: 640px;
+		margin: 0 auto;
+	}
+	body > header, article > div > header { padding: 8px 12px; }
+	article {
+		h2 { line-height: 64px; }
+		section:first-child { padding: 8px 24px; }
+	}
+	.cards {
+		margin: 0 -8px 24px;
+		li .button { margin: 6px 16px; }
+	}
+	.c {
+		&.header { padding: 0 24px; }
+		&.tabs { padding: 6px 12px; }
+		&.button { margin: 6px 4px; }
+	}
+	form {
+		margin: 72px auto 0;
+		padding: 0 24px;
+		width: 320px;
+		input.c.button { margin-right: 0; }
+	}
 }
 
+/*
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 
   // Styles for tablet

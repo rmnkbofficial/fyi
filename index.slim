@@ -5,6 +5,7 @@ html
 		title imogen
 		meta name="keywords" content="creative director,product designer,ui designer,ux designer"
 		meta name="author" content="Imogen Olsen"
+		meta name="viewport" content="initial-scale=1.0, width=device-width"
 		link rel="icon" type="image/png" href="@path favicon.ico"
 		link rel="stylesheet" type="text/css" href="@path normalize.css"
 		link rel="stylesheet" type="text/css" href="@path style.css"
@@ -101,6 +102,9 @@ html
 				$("body").on("click", ".cards .inactive", function() {
 					//get target and current transformX()
 					var transform_change = $(this).position().left;
+					if ($(window).width() < 768 && $(this).index() > 0 ) {
+						transform_change -= 16;
+					}
 					var current_transform = parseInt($(this).siblings(0).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
 					//set new transformX() and styles
