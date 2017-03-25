@@ -3,7 +3,7 @@ html {
 	height: 100%;
 	background-color: #fafafa;
 	font-family: "Space Mono", monospace;
-	font-size: 13px;
+	font-size: 14px;
 	color: #0c090d;
 	overflow-x: hidden;
 	perspective: 256px;
@@ -221,6 +221,16 @@ article {
 	}
 }
 
+@media only screen and (max-width: 364px) {
+	nav {
+		margin: 0 -8px;
+	}
+	nav .c.button {
+		padding: 0 5px;
+		min-width: 0;
+	}
+}
+
 @media only screen and (min-width: 380px) {
 	.cards li.card.wide, .cards li .card.wide { height: 190px; }
 }
@@ -269,6 +279,7 @@ article {
 }
 
 @media only screen and (min-width: 1280px) {
+	html { font-size: 13px; }
 	section:not(.narrow) { width: 1042px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
