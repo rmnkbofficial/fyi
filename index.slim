@@ -23,13 +23,16 @@ html
 			section
 				section.text
 					p hi i'm imogen
-					p i turn good ideas into good things
-					p i still need to add a bunch of things to this. in the meantime check out <a class="button" href="#design-product-straightkey"><mark class="highlight-design">straightkey,</mark></a> it's one of my favs
+					br
+					p i make fresh ideas from all-natural, locally-sourced ingredients and help teams execute on them.
+					p publishing is cool. design systems are cool. being socially conscious is cool. i'm not sure if posting is cool, but i like to post and to build things on which people post.
+					br
+					p most recently i was chief design officer at a place for two-ish years, juggling apps, websites, print projects, merch, event spaces, and ads.
+					br
+					p i'm available for digital design, creative, and maybe front-end dev work <a href="https://github.com/imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/fyi" target="_blank">(i wrote this website).</a> i have some work on the design page (<a class="button" href="#design-product-straightkey"><mark class="highlight-design">straightkey</a> is a fav), and <a class="button" href="#contact"><mark class="highlight-contact">just ask</mark></a> if you'd like to see more. <span class="hint">(adding more design and photo soon)</a>
 					//'
-					p i'm also available for design & front-end dev work so <a class="button" href="#contact"><mark class="highlight-contact">hmu.</mark></a> i charge based on the type of client and the project's contribution to the common good.
-					//'
-					p <br>~<br><br>
-					p if you're wondering, this site is a static single-page app written in slim & sass from scratch and hosted on s3. <a href="https://github.com/imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/fyi" target="_blank">the source is public.</a>
+					br
+					p <b>tl;dr</b> product design and creative direction. let's make a thing. 
 			section.inactive
 				section#design-product
 					header.c.header product
@@ -61,6 +64,8 @@ html
 					li no
 					li plase don't
 			section.narrow.inactive
+				div.text
+					p listen for free on <a href="https://soundcloud.com/imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn" target="_blank">soundcloud,</a> then buy from <a href="https://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com" target="_blank">bandcamp</a> if you like it
 				header.c.header latest
 				div
 					iframe width="100%" height="180" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/313200093&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
@@ -70,14 +75,15 @@ html
 		script src="@path jquery-1.8.3.min.js"
 		script src="@path autosize.min.js"
 		script src="@path select2.min.js"
+		//<!-- @javascript main -->
 		javascript:
 			function setInactiveCards() {
 				$(".cards li").each(function() {
 					var gutter = 0;
 					if ($(this).position().left + $(this).width() + gutter >= $(this).closest("section").width() || $(this).position().left < 0) {
-						$(this).addClass("inactive");//.find(".button").prop("disabled", true);
+						$(this).addClass("inactive");
 					} else {
-						$(this).removeClass("inactive");//.find(".button").prop("disabled", false);
+						$(this).removeClass("inactive");
 					};
 				});
 			};
@@ -92,7 +98,6 @@ html
 					}, 20);
 				})
 			};
-			//do the stuff
 			$(document).ready(function() {
 				//INIT
 				//prevent .load() from caching locally
@@ -132,7 +137,7 @@ html
 					//get target and transform change
 					var transform_change = $(this).position().left;
 					var target_index = $(this).index();
-					if (transform_change < 0) {
+					if (transform_change < 0) { //backward jump
 						var section_width = $(this).closest("section").width();
 						var width = $(this).width();
 						var iterations = 0;
@@ -142,12 +147,14 @@ html
 							width += $(this).closest(".cards").children().eq(target_index - iterations).width() + 16;
 						} 
 					}
-					if ($(this).closest(".cards").children().first().position().left - transform_change < 0) {
-						transform_change -= 16;
+					if ($(window).width() < 768) { //mobile gutter offset
+						if ($(this).closest(".cards").children().first().position().left - transform_change < 0) {
+							transform_change -= 16;
+						}
 					}
-					var current_transform = parseInt($(this).siblings(0).css('transform').split(',')[4]);
+					var current_transform = parseInt($(this).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
-					if (transform_change > 0) {
+					if (transform_change > 0) { //mobile offset
 						var last_element = $(this).closest(".cards").children().last();
 						var offset = last_element.position().left - transform_change;
 						while (offset + 1 < $(this).closest("section").width() - last_element.width()) {
