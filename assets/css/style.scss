@@ -115,9 +115,7 @@ form {
 		&.card, .card {
 			height: 384px;
 			img { height: 100%; }
-			&.wide {
-				height: 180px;
-			}
+			&.wide { height: 180px; }
 		}
 		.card {
 			order: -1;
@@ -227,13 +225,17 @@ article {
 }
 
 @media only screen and (max-width: 364px) {
-	nav {
+	/*nav {
 		margin: 0 -8px;
 	}
-	nav .c.button {
+	/nav .c.button {
 		padding: 0 5px;
 		min-width: 0;
-	}
+	}*/
+	.cards li.card.husky, .cards li .card.husky { height: 272px; }
+}
+@media only screen and (max-width: 380px) {
+	.cards li.card.husky, .cards li .card.husky { height: 320px; }
 }
 @media only screen and (min-width: 380px) {
 	.cards li.card.wide, .cards li .card.wide { height: 190px; }
