@@ -199,6 +199,7 @@ article {
 		line-height: 36px;
 		text-align: center;
 		cursor: pointer;
+		&:focus { outline: none; }
 		&.inactive {
 			opacity: .5;
 			transition: opacity .3s;
@@ -233,15 +234,12 @@ article {
 		min-width: 0;
 	}
 }
-
 @media only screen and (min-width: 380px) {
 	.cards li.card.wide, .cards li .card.wide { height: 190px; }
 }
-
 @media only screen and (min-width: 396px) {
 	.cards li.card.wide, .cards li .card.wide { height: 200px; }
 }
-
 @media only screen and (min-width: 768px) {
 	iframe { margin-bottom: 19px; }
 	section {
@@ -275,23 +273,19 @@ article {
 		input.c.button { margin-right: 0; }
 	}
 }
-
 @media only screen and (min-width: 1024px) {
 	section:not(.narrow) { width: 896px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
-
 @media only screen and (min-width: 1280px) {
 	html { font-size: 13px; }
 	section:not(.narrow) { width: 1042px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
-
 @media only screen and (min-width: 1440px) {
 	section:not(.narrow) { width: 1202px }
 	.cards li.card.wide, .cards li .card.wide { height: 512px; }
 }
-
 @media only screen and (min-width: 1920px) {
 	section:not(.narrow) { width: 1490px }
 	.cards li.card, .cards li .card {

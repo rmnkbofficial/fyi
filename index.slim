@@ -49,13 +49,17 @@ html
 							a.c.button href="#design-product-zilpapp" zilpapp
 							div.c.card: img src="@path thumb-zilpapp"
 						li
+							a.c.button href="#design-product-docksocial" docksocial
+							div.c.card: img src="@path thumb-docksocial"
+						li
 							a.c.button href="#design-product-real" real
 							div.c.card: img src="@path thumb-real"
-				//section#design-graphic
-					| graphic
-					li (fresco)
-					li (imogen)
-					li (cuddle)
+				section#design-graphic
+					header.c.header graphic
+					ul.cards
+						li
+							a.c.button href="#design-identity-hate" america hates you
+							div.c.card: img src="@path thumb-hate"
 			//section.inactive
 				header.c.header galleries
 				ul.cards
@@ -155,7 +159,7 @@ html
 					}
 					var current_transform = parseInt($(this).css('transform').split(',')[4]);
 					current_transform = current_transform || 0
-					if (transform_change > 0) { //mobile offset
+					if (transform_change > 0) { //end stop
 						var last_element = $(this).closest(".cards").children().last();
 						var offset = last_element.position().left - transform_change;
 						while (offset + 1 < $(this).closest("section").width() - last_element.width()) {
@@ -163,7 +167,7 @@ html
 							offset += 1;
 						}
 					}
-					if (offset < $(this).closest("section").width() - $(this).closest(".cards").children().last().width()) {
+					if (offset < $(this).closest("section").width() - $(this).closest(".cards").children().last().width()) { //idk i messed something up and this fixes it lol
 						transform_change += 32;
 					}
 					var new_translate = current_transform - transform_change
