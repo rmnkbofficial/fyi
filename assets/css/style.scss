@@ -223,19 +223,20 @@ article {
 		box-shadow: 0 24px 24px rgba(0,0,0,.1), 0 0 24px rgba(0,0,0,.05);
 	}
 }
-
-@media only screen and (max-width: 364px) {
-	/*nav {
+/*@media only screen and (max-width: 364px) {
+	nav {
 		margin: 0 -8px;
 	}
 	/nav .c.button {
 		padding: 0 5px;
 		min-width: 0;
-	}*/
-	.cards li.card.husky, .cards li .card.husky { height: 272px; }
+	}
+}*/
+@media only screen and (max-width: 415px) {
+	.cards li.card.husky, .cards li .card.husky { height: 320px; }
 }
 @media only screen and (max-width: 380px) {
-	.cards li.card.husky, .cards li .card.husky { height: 320px; }
+	.cards li.card.husky, .cards li .card.husky { height: 256px; }
 }
 @media only screen and (min-width: 380px) {
 	.cards li.card.wide, .cards li .card.wide { height: 190px; }
