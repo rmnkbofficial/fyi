@@ -45,6 +45,13 @@ nav { padding: 0 4px; }
 //general
 body > main > section.inactive { display: none; }
 .text { padding: 8px 16px; }
+#tagline {
+	display: inline-block;
+	margin-left: -8px;
+	font-size: 34px;
+	line-height: 40px;
+	font-weight: bold;
+}
 
 //intro
 mark {
@@ -245,6 +252,7 @@ article {
 	.cards li.card.wide, .cards li .card.wide { height: 200px; }
 }
 @media only screen and (min-width: 768px) {
+	#tagline { margin-left: -16px; }
 	iframe { margin-bottom: 19px; }
 	section {
 		width: 640px;
