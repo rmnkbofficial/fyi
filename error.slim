@@ -5,10 +5,39 @@ html
 		title imogen
 		meta name="keywords" content="creative director,product designer,ui designer,ux designer"
 		meta name="author" content="Imogen Olsen"
-		link rel="icon" type="image/png" href="@path favicon.ico"
+		meta name="viewport" content="initial-scale=1.0, width=device-width"
+		link rel="apple-touch-icon" sizes="180x180" href="@path apple-touch-icon.png?v=wAvGbY9gbG"
+		link rel="icon" type="image/png" sizes="32x32" href="@path favicon-32x32.png?v=wAvGbY9gbG"
+		link rel="icon" type="image/png" sizes="16x16" href="@path favicon-16x16.png?v=wAvGbY9gbG"
+		link rel="manifest" href="@path manifest.json?v=wAvGbY9gbG"
+		link rel="mask-icon" href="@path safari-pinned-tab.svg?v=wAvGbY9gbG" color="#212121"
+		link rel="shortcut icon" href="@path favicon.ico?v=wAvGbY9gbG"
+		meta name="theme-color" content="#fafafa"
 		link rel="stylesheet" type="text/css" href="@path normalize.css"
 		link rel="stylesheet" type="text/css" href="@path style.css"
 		link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i"
-		script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"
 	body
-		p my b
+		header.pages
+			a.c.button.page href="index.html" imogen
+			nav
+				a.c.button.page.inactive#button-design href="index.html#page-design" design
+				//a.c.button.page.inactive#button-photo href="#page-photo" photo
+				a.c.button.page.inactive#button-music href="index.html#page-music" music
+			a.c.button#button-contact href="index.html#contact" contact
+		main
+			section
+				section.text.inactive
+					p: span#tagline you messed up.
+					p i don't even use separate pages on this site.
+					p please calm down.
+		article.c.dialog.inactive style="display:none;"
+		script src="@path jquery-1.8.3.min.js"
+		script src="@path jquery.widowFix.min.js"
+		script src="@path autosize.min.js"
+		//<!-- @javascript main -->
+		javascript:
+			$(document).ready(function() {
+				//INIT
+				$.ajax({ headers: { "Cache-Control": "max-age=0" } });
+				$("p").widowFix();
+			});
