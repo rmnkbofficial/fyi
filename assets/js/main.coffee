@@ -10,7 +10,7 @@ setInactiveCards = ->
 			$(this).removeClass "inactive"
 openDialog = (target) ->
 	$("article").load "pages/" + target + ".html", ->
-		$("body").css "overflow", "none"
+		$("body").css "overflow", "hidden"
 		$("article").css "display", ""
 		callback = ->
 			$("article")

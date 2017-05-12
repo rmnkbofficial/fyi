@@ -9,6 +9,10 @@ html {
 	perspective: 256px;
 	transform-style: preserve-3d;
 }
+body {
+	height: 100%;
+	transform: translateZ(0);
+}
 body, article > div { overflow-x: hidden; }
 body > main img {
 	z-index: -1;
