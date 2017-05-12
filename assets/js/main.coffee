@@ -16,8 +16,8 @@ openDialog = (target) ->
 				.removeClass "inactive"
 				.on "transitionend", ->
 					setInactiveCards()
-					$("article p").widowFix()
 		setTimeout callback, 50
+		$("article p").widowFix()
 $(document).ready ->
 	#$.ajax { headers: { "Cache-Control": "max-age=0" } }
 	$("p").widowFix()
@@ -39,7 +39,7 @@ $(document).ready ->
 	setInactiveCards()
 	#ALRIGHT SHOWTIME
 	#open dialog
-	$("body > main").on "click", "button", ->
+	$("body > main").on "click", ".button", ->
 		target = $(this).attr("href").split("#")[1]
 		openDialog target
 	$("#button-contact").on "click", ->
@@ -53,14 +53,14 @@ $(document).ready ->
 			callback = -> history.pushState null, null, "#"
 			setTimeout callback, 50
 	#switch pages
-	$(".pager").on "click", "inactive", ->
+	$(".pager").on "click", ".inactive", ->
 		#set tab states
 		$(".pager .page:not(.inactive)").addClass "inactive"
 		$(this).removeClass "inactive"
 		#set section states
 		page_index = $(".pager .page").index $(this)
-		$("body > main").children("section:not('.inactive')")
-			.addClass("inactive")
+		$("body > main").children "section:not('.inactive')"
+			.addClass "inactive"
 			.siblings().andSelf().eq(page_index).removeClass "inactive"
 		setInactiveCards()
 	#switch tabs

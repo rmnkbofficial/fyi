@@ -2,7 +2,7 @@ doctype html
 html
 	<!-- @reload -->
 	head
-		title imogen
+		title oops
 		meta name="keywords" content="creative director,product designer,ui designer,ux designer"
 		meta name="author" content="Imogen Olsen"
 		meta name="viewport" content="initial-scale=1.0, width=device-width"
@@ -33,10 +33,3 @@ html
 		script src="@path jquery-1.8.3.min.js"
 		script src="@path jquery.widowFix.min.js"
 		script src="@path autosize.min.js"
-		//<!-- @javascript main -->
-		javascript:
-			$(document).ready(function() {
-				//INIT
-				$.ajax({ headers: { "Cache-Control": "max-age=0" } });
-				$("p").widowFix();
-			});
