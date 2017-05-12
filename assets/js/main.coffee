@@ -10,7 +10,6 @@ setInactiveCards = ->
 			$(this).removeClass "inactive"
 openDialog = (target) ->
 	$("article").load "pages/" + target + ".html", ->
-		$("body").css "overflow", "hidden"
 		$("article").css "display", ""
 		callback = ->
 			$("article")
@@ -20,7 +19,7 @@ openDialog = (target) ->
 		setTimeout callback, 50
 		$("article p").widowFix()
 $(document).ready ->
-	#$.ajax { headers: { "Cache-Control": "max-age=0" } }
+	$.ajax { headers: { "Cache-Control": "max-age=0" } }
 	$("p").widowFix()
 	#load state from url
 	hash = window.location.hash
@@ -50,9 +49,7 @@ $(document).ready ->
 		$("article").addClass "inactive"
 		$("body").on "transitionend", "article", ->
 			$("article").css "display", "none"
-			$("body")
-				.css "overflow", "initial"
-				.off "transitionend", "article"
+			$("body").off "transitionend", "article"
 			callback = -> history.pushState null, null, "#"
 			setTimeout callback, 50
 	#switch pages
