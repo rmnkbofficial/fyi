@@ -10,6 +10,7 @@ setInactiveCards = ->
 			$(this).removeClass "inactive"
 openDialog = (target) ->
 	$("article").load "pages/" + target + ".html", ->
+		$("body").css "overflow", "none"
 		$("article").css "display", ""
 		callback = ->
 			$("article")
@@ -49,7 +50,9 @@ $(document).ready ->
 		$("article").addClass "inactive"
 		$("body").on "transitionend", "article", ->
 			$("article").css "display", "none"
-			$("body").off "transitionend", "article"
+			$("body")
+				.css "overflow", "initial"
+				.off "transitionend", "article"
 			callback = -> history.pushState null, null, "#"
 			setTimeout callback, 50
 	#switch pages
