@@ -31,8 +31,8 @@ $(document).ready ->
 			$(".pager .page:not(.inactive)").addClass "inactive"
 			$(".pager .page").eq(page_index).removeClass "inactive"
 			#set section states
-			$("body > main")
-				.children("section:not('.inactive')").addClass "inactive"
+			$("body > main").children("section:not('.inactive')")
+				.addClass "inactive"
 				.siblings().andSelf().eq(page_index).removeClass "inactive"
 			setInactiveCards()
 		else openDialog target
