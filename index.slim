@@ -25,56 +25,11 @@ html
 			a.c.button#button-contact href="#contact" contact
 		main
 			section
-				section.text
-					p <a class="button" href="#contact"><mark class="highlight-contact">i'm looking for a backend dev for a nonprofit project with the goal of making more informed voters. hit me up if you want to volunteer some time and get weird with web scraping, postgres, and the phoenix framework.</mark></a>
-					//'
-					p: span#tagline coherent,<br>context-aware<br>product design
-					p hello friend. i'm imogen
-					br
-					p i spend most of my time on end-to-end product design.
-					p publishing, politics, and technology's impact on personal identity are what i care about most.
-					br
-					p right now i'm working on projects related to voter awareness, affordable food delivery, and utilities infrastructure. before that i was chief design officer at a media-adjecent startup for two-ish years, juggling apps, websites, print projects, merch, event spaces, and ads.
-					br
-					p i'm available for digital design, creative, and light front-end dev projects. check out my work (<a class="button" href="#design-product-straightkey"><mark class="highlight-design">straightkey</a> is a fav), then <a class="button" href="#contact"><mark class="highlight-contact">say hi.</mark></a>
-					br
-					p.hint this site is open source. feel free to <a href="https://github.com/imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/fyi" target="_blank">clone the repo</a> for personal use. 
+				<!-- @include _section-about -->
 			section.inactive
-				section#design-product
-					header.c.header product
-					ul.cards
-						li
-							a.c.button href="#design-product-fresco" fresco
-							div.c.card: img src="@path thumb-fresco"
-						li
-							a.c.button href="#design-product-beanthere" beanthere
-							div.c.card: img src="@path thumb-beanthere"
-						li
-							a.c.button href="#design-product-straightkey" straightkey
-							div.c.card: img src="@path thumb-straightkey"
-						//li
-							a.c.button href="#design-product-zilpapp" zilpapp
-							div.c.card: img src="@path thumb-zilpapp"
-						li
-							a.c.button href="#design-product-docksocial" docksocial
-							div.c.card: img src="@path thumb-docksocial"
-						li
-							a.c.button href="#design-product-real" real
-							div.c.card: img src="@path thumb-real"
-				section#design-graphic
-					header.c.header graphic
-					ul.cards
-						li
-							a.c.button href="#design-identity-hate" america hates you
-							div.c.card.wide.husky: img src="@path thumb-hate"
+				<!-- @include _section-design -->
 			section.narrow.inactive
-				div.text
-					p listen for free on <a href="https://soundcloud.com/imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn" target="_blank">soundcloud,</a> then buy from <a href="https://imogennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn.bandcamp.com" target="_blank">bandcamp</a> if you like it
-				header.c.header latest
-				div
-					iframe width="100%" height="180" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/313200093&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
-					iframe width="100%" height="272" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/264592573&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
-					iframe width="100%" height="180" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/189958524&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+				<!-- @include _section-music -->
 		article.c.dialog.inactive style="display:none;"
 		script src="@path jquery-1.8.3.min.js"
 		script src="@path jquery.widowFix.min.js"
