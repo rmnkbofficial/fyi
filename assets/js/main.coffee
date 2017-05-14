@@ -77,33 +77,34 @@ $(document).ready ->
 			.siblings(".cards").addClass "inactive"
 	#scroll cards oh god i'm so sorry about this
 	$("body").on "click", ".cards .inactive", ->
+		section_width = $(this).closest("section").width()
+		cards = $(this).closest(".cards").children()
 		target_index = $(this).index()
 		#default transformation
 		transform_change = $(this).position().left
 		#scroll backward up to one section_width
 		if transform_change > 0
-			section_width = $(this).closest("section").width()
 			cards_width_remainder = $(this).width()
 			iterations = 0
 			while cards_width_remainder < section_width
 				card_index = target_index - iterations
 				#update transform_change to position of current card
-				transform_change = $(this).closest(".cards").children().eq(Math.max(0, card_index)).position().left
+				transform_change = cards.eq(Math.max(0, card_index)).position().left
 				iterations++
 				#subtract current card from remainder
-				cards_width_remainder += $(this).closest(".cards").children().eq(card_index).width() + 16
+				cards_width_remainder += cards.eq(card_index).width() + 16
 		#apply left gutter to phones
-		needs_gutter = $(this).closest(".cards").children().first().position().left - transform_change < 0
+		needs_gutter = cards.first().position().left - transform_change < 0
 		transform_change -= 16 if $(window).width() < 768 and needs_gutter
 		#remove empty space at the end
 		if transform_change > 0
-			last_element = $(this).closest(".cards").children().last()
+			last_element = cards.last()
 			offset = last_element.position().left - transform_change
 			while offset + 1 < $(this).closest("section").width() - last_element.width()
 				transform_change--
 				offset++
 		#put a rest to the right gutter shenanigans
-		if offset < $(this).closest("section").width() - $(this).closest(".cards").children().last().width()
+		if offset < section_width - cards.last().width()
 			transform_change += 32
 		#determine translation
 		current_transform = parseInt $(this).css('transform').split(',')[4]
