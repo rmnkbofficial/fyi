@@ -18,6 +18,9 @@ openDialog = (target) ->
 					setInactiveCards()
 		setTimeout callback, 50
 		$("article p").widowFix()
+styleParty = (selector, rule, values) ->
+	index = Math.floor(Math.random() * values.length)
+	$(selector).css(rule, values[index])
 $(document).ready ->
 	$.ajax { headers: { "Cache-Control": "max-age=0" } }
 	$("p").widowFix()
@@ -113,3 +116,5 @@ $(document).ready ->
 				.on "transitionend", ->
 					setInactiveCards()
 					$(this).off "transitionend", false
+	colors = ["#e01a4f", "#f15946", "#f9c22e", "#53b3cb"]
+	setInterval styleParty, 1000, "#tagline", "color", colors
