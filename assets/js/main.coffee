@@ -84,7 +84,7 @@ $(document).ready ->
 		transform_change = $(this).position().left
 		#scroll backward up to one section_width
 		if transform_change > 0
-			cards_width_remainder = $(this).width()
+			cards_width_remainder = section_width
 			iterations = 0
 			while cards_width_remainder < section_width
 				card_index = target_index - iterations
