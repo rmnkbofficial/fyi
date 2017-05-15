@@ -126,7 +126,7 @@ $(document).ready ->
 		scrollToCard(target_card)
 	$("body").on "swiperight", ".cards", ->
 		cards = $(this)
-		target_card = cards.children().eq getActiveCardIndex(cards) - 1
+		target_card = cards.children().eq Math.max getActiveCardIndex(cards) - 1, 0
 		scrollToCard(target_card)
 	$("body").on "click", ".cards .inactive", ->
 		scrollToCard($(this))
