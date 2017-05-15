@@ -92,17 +92,18 @@ $(document).ready ->
 				card_index = target_index - iterations
 				cards_width_remainder -= (cards.eq(card_index).width() + 16)
 		#apply left gutter to phones
+		is_phone = $(window).width() < 768
 		needs_gutter = cards.first().position().left - transform_change < 0
-		transform_change -= 16 if $(window).width() < 768 and needs_gutter
+		transform_change -= 16 if is_phone and needs_gutter
 		#remove empty space at the end
 		if transform_change > 0
 			last_element = cards.last()
-			offset = last_element.position().left - transform_change
-			while offset + 1 < $(this).closest("section").width() - last_element.width()
+			offset = last_element.position().left - transform_change + 1
+			while offset < $(this).closest("section").width() - last_element.width()
 				transform_change--
 				offset++
 		#put a rest to the right gutter shenanigans
-		if window.innerWidth < 768 and offset < section_width - cards.last().width()
+		if is_phone and offset < section_width - cards.last().width()
 			transform_change += 32
 		#determine translation
 		current_transform = parseInt $(this).css('transform').split(',')[4]
