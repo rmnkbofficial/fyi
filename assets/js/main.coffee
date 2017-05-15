@@ -103,7 +103,7 @@ $(document).ready ->
 				transform_change--
 				offset++
 		#put a rest to the right gutter shenanigans
-		if is_phone and offset < section_width - cards.last().width()
+		if is_phone and offset < cards.last().width()
 			transform_change += 32
 		#determine translation
 		current_transform = parseInt $(this).css('transform').split(',')[4]
