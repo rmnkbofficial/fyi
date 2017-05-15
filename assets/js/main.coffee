@@ -8,6 +8,50 @@ setInactiveCards = ->
 			$(this).addClass "inactive"
 		else
 			$(this).removeClass "inactive"
+getActiveCardIndex = (cards) ->
+	lost = true
+	i = -1
+	while lost
+		i++
+		lost = cards.children().eq(i).hasClass "inactive"
+	return i
+scrollToCard = (target_card) ->
+	section_width = target_card.closest("section").width()
+	cards = target_card.closest(".cards").children()
+	transform_change = target_card.position().left
+	#scroll backward up to one section_width
+	if transform_change < 0
+		card_index = target_card.index()
+		remainder = section_width - cards.eq(card_index).width() + 16
+		while remainder > 0
+			transform_change = cards.eq(Math.max(0, card_index)).position().left
+			card_index--
+			remainder -= (cards.eq(card_index).width() + 16)
+	#apply left gutter to phones
+	is_phone = $(window).width() < 768
+	needs_gutter = cards.first().position().left - transform_change < 0
+	transform_change -= 16 if is_phone and needs_gutter
+	#remove empty space at the end
+	if transform_change > 0
+		last_element = cards.last()
+		offset = last_element.position().left - transform_change + 1
+		while offset < section_width - last_element.width()
+			transform_change--
+			offset++
+	#put a rest to the right gutter shenanigans
+	if is_phone and offset < cards.last().width()
+		transform_change += 32
+	#determine translation
+	current_transform = parseInt target_card.css('transform').split(',')[4]
+	current_transform = current_transform or 0
+	new_translate = current_transform - transform_change
+	#apply translation
+	target_card.siblings().andSelf().each ->
+		$(this)
+			.css "transform", "translateX(" + new_translate + "px)"
+			.on "transitionend", ->
+				setInactiveCards()
+				$(this).off "transitionend", false
 openDialog = (target) ->
 	$("article").load "pages/" + target + ".html", ->
 		$("article").css "display", ""
@@ -76,45 +120,17 @@ $(document).ready ->
 			.closest("section").children(".cards").eq(tab_index).removeClass "inactive"
 			.siblings(".cards").addClass "inactive"
 	#scroll cards oh god i'm so sorry about this
+	$("body").on "swipeleft", ".cards", ->
+		cards = $(this)
+		target_card = cards.children().eq getActiveCardIndex(cards) + 1
+		scrollToCard(target_card)
+	$("body").on "swiperight", ".cards", ->
+		cards = $(this)
+		target_card = cards.children().eq getActiveCardIndex(cards) - 1
+		scrollToCard(target_card)
 	$("body").on "click", ".cards .inactive", ->
-		section_width = $(this).closest("section").width()
-		cards = $(this).closest(".cards").children()
-		target_index = $(this).index()
-		transform_change = $(this).position().left
-		#scroll backward up to one section_width
-		if transform_change < 0
-			iterations = 1
-			card_index = target_index - iterations
-			cards_width_remainder = section_width - cards.eq(card_index).width() + 16
-			while cards_width_remainder > 0
-				transform_change = cards.eq(Math.max(0, card_index)).position().left
-				iterations++
-				card_index = target_index - iterations
-				cards_width_remainder -= (cards.eq(card_index).width() + 16)
-		#apply left gutter to phones
-		is_phone = $(window).width() < 768
-		needs_gutter = cards.first().position().left - transform_change < 0
-		transform_change -= 16 if is_phone and needs_gutter
-		#remove empty space at the end
-		if transform_change > 0
-			last_element = cards.last()
-			offset = last_element.position().left - transform_change + 1
-			while offset < $(this).closest("section").width() - last_element.width()
-				transform_change--
-				offset++
-		#put a rest to the right gutter shenanigans
-		if is_phone and offset < cards.last().width()
-			transform_change += 32
-		#determine translation
-		current_transform = parseInt $(this).css('transform').split(',')[4]
-		current_transform = current_transform or 0
-		new_translate = current_transform - transform_change
-		#apply translation
-		$(this).siblings().andSelf().each ->
-			$(this)
-				.css "transform", "translateX(" + new_translate + "px)"
-				.on "transitionend", ->
-					setInactiveCards()
-					$(this).off "transitionend", false
+		scrollToCard($(this))
+
+
 	colors = ["#e01a4f", "#f15946", "#f9c22e", "#53b3cb"]
 	setInterval styleParty, 1000, "#tagline", "color", colors
