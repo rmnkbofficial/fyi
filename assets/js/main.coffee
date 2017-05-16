@@ -39,7 +39,7 @@ scrollToCard = (target_card) ->
 			transform_change--
 			offset++
 	#put a rest to the right gutter shenanigans
-	if is_phone and target_card.index() == cards.length - 1
+	if is_phone and target_card.index() + 1 == cards.length
 		transform_change += 32
 	#determine translation
 	current_transform = parseInt target_card.css('transform').split(',')[4]
@@ -130,7 +130,5 @@ $(document).ready ->
 		scrollToCard(target_card)
 	$("body").on "click", ".cards .inactive", ->
 		scrollToCard($(this))
-
-
 	colors = ["#e01a4f", "#f15946", "#f9c22e", "#53b3cb"]
 	setInterval styleParty, 1000, "#tagline", "color", colors
