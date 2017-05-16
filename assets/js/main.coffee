@@ -39,7 +39,7 @@ scrollToCard = (target_card) ->
 			transform_change--
 			offset++
 	#put a rest to the right gutter shenanigans
-	if is_phone and offset < cards.last().width()
+	if is_phone and target_card.index() == cards.length - 1
 		transform_change += 32
 	#determine translation
 	current_transform = parseInt target_card.css('transform').split(',')[4]
