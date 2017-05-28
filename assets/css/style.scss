@@ -39,6 +39,10 @@ body > header {
 	display: flex;
 	justify-content: space-between;
 }
+h1 {
+	margin: 0;
+	font-size: inherit;
+}
 nav { padding: 0 4px; }
 #button-design { color: #e01a4f; }
 #button-photo {	color: #f15946; }
