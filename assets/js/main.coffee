@@ -46,7 +46,7 @@ scrollToCard = (target_card) ->
 	current_transform = current_transform or 0
 	new_translate = current_transform - transform_change
 	#apply translation
-	target_card.siblings().andSelf().each ->
+	target_card.siblings().addBack().each ->
 		$(this)
 			.css "transform", "translateX(" + new_translate + "px)"
 			.on "transitionend", ->
@@ -80,7 +80,7 @@ $(document).ready ->
 			#set section states
 			$("body > main").children("section:not('.inactive')")
 				.addClass "inactive"
-				.siblings().andSelf().eq(page_index).removeClass "inactive"
+				.siblings().addBack().eq(page_index).removeClass "inactive"
 			setInactiveCards()
 		else openDialog target
 	setInactiveCards()
@@ -108,7 +108,7 @@ $(document).ready ->
 		page_index = $(".pager .page").index $(this)
 		$("body > main").children "section:not('.inactive')"
 			.addClass "inactive"
-			.siblings().andSelf().eq(page_index).removeClass "inactive"
+			.siblings().addBack().eq(page_index).removeClass "inactive"
 		setInactiveCards()
 	#switch tabs
 	$("body").on "click", ".tabs .inactive", ->
