@@ -66,7 +66,6 @@ styleParty = (selector, rule, values) ->
 	index = Math.floor(Math.random() * values.length)
 	$(selector).css(rule, values[index])
 $(document).ready ->
-	$.ajax { headers: { "Cache-Control": "max-age=0" } }
 	$("p").widowFix()
 	#load state from url
 	hash = window.location.hash
