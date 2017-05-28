@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://www.imogen.fyi/sitemap.xml
