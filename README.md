@@ -1,5 +1,5 @@
 # fyi
-this is my website. u can fork it, swap out the content & emailjs keys, and use it as yours.
+this is my v3 website. u can fork it, swap out the content & emailjs keys, and use it as yours. too bad nothing works yet
 #### overview
 - static
 - single-page
