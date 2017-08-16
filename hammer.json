@@ -1,7 +1,0 @@
-{
-  "sourcemaps" : "false",
-  "forgeDeploy" : "false",
-  "autoprefixer" : {
-    "browsers" : "last 2 versions"
-  }
-}

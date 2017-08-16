@@ -1,0 +1,268 @@
+@charset "utf-8";
+
+//VARIABLES
+//edit these to change the look & feel
+//
+//text
+$brand-font: "Space Mono", monospace;
+$base-font: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//color
+$color-red: #fe2851;
+$color-green: #04e762;
+$color-blue: #0096ff;
+$color-white: #fafafa;
+$color-black: #202020;
+$alpha-secondary: 0.45;
+$alpha-inactive: $alpha-secondary;
+$alpha-hint: 0.25;
+$alpha-disabled: $alpha-hint;
+$alpha-shadow: 0.1;
+$alpha-background: 0.05;
+$alpha-line: $alpha-background;
+//layout
+$base-unit: 8px; //v-margin and 50% of h-margin
+$opt-unit: 8px; //extra h-margin for tablets & up
+$breakpoint-width: 688px; //what makes a tablet?
+//animation
+$base-time: 150ms;
+
+//FRAGMENTS
+//use these bits to quickly apply io to existing elements
+//
+//override classes
+.io-color-red { color: $color-red; }
+.io-color-green { color: $color-green; }
+.io-color-blue { color: $color-blue; }
+.io-color-white { color: $color-white; }
+.io-color-black { color: $color-black; }
+.io-inactive { opacity: $alpha-inactive; }
+.io-background-color-red { background-color: $color-red; }
+.io-background-color-green { background-color: $color-green; }
+.io-background-color-blue { background-color: $color-blue; }
+.io-background-color-white { background-color: $color-white; }
+.io-background-color-black { background-color: $color-black; }
+//sass mixins
+@mixin outline {
+  outline: 1px solid rgba($color-black, $alpha-line);
+}
+@mixin shadow-low {
+  box-shadow: 0 0 2px rgba($color-black, $alpha-shadow), 0 2px 2px rgba($color-black, $alpha-shadow);
+}
+@mixin shadow-mid {
+  box-shadow: 0 0 6px rgba($color-black, $alpha-shadow), 0 6px 6px rgba($color-black, $alpha-shadow);
+}
+@mixin shadow-high {
+  box-shadow: 0 0 14px rgba($color-black, $alpha-shadow), 0 14px 14px rgba($color-black, $alpha-shadow);
+}
+
+//MAIN LIBRARY
+$breakpoint: inspect(screen and (min-width: $breakpoint-width));
+.io {
+  //resets
+  box-sizing: border-box;
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+  //global styles
+  background-color: $color-white;
+  color: $color-black;
+  font: 16px/24px $base-font;
+  //state
+  @keyframes progress {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  .io-container.loading::after,
+  &.loading::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $base-unit / 2;
+    background-color: $color-blue;
+    animation: progress $base-time*12 ease-in-out infinite;
+    transition: bottom $base-time*2;
+  }
+  .io-container:not(.loading)::after,
+  &:not(.loading)::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: -($base-unit / 2);
+    height: $base-unit / 2;
+    background-color: $color-blue;
+    animation: progress $base-time*12 ease-in-out infinite;
+    transition: bottom $base-time*2;
+  }
+  //components
+  .io-navbar,
+  &.io-navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: $base-unit;
+    display: flex;
+    justify-content: space-between;
+    @media #{$breakpoint} {
+      padding: $base-unit+$opt-unit/2 $base-unit+$opt-unit;
+    }
+    &.scrolled {
+      background-color: inherit;
+      @include outline;
+      z-index: 1;
+    }
+    :nth-child(2):last-child {
+      flex: 1;
+      text-align: center;
+    }
+    [data-io-navbar~="pin-left"] {
+      position: absolute;
+      top: $base-unit;
+      left: $base-unit;
+      @media #{$breakpoint} {
+        top: $base-unit + $opt-unit/2;
+        left: $base-unit + $opt-unit;
+      }
+    }
+    [data-io-navbar~="pin-right"] {
+      position: absolute;
+      top: $base-unit + $opt-unit/2;
+      left: $base-unit + $opt-unit;
+    }
+  }
+  main,
+  &.io-main {
+      margin: 0 auto;
+      width: $breakpoint-width - $base-unit*6;
+      max-width: 100%;
+      padding: $base-unit * 2;
+      @media #{$breakpoint} {
+        padding: $base-unit*2 + $opt-unit
+      }
+    > *:first-child {
+      margin-top: -$base-unit;
+      @media #{$breakpoint} {
+        margin-top: -($base-unit + $opt-unit);
+      }
+    }
+  }
+  .io-dialog,
+  &.io-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color-white, $alpha-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color $base-time*2;
+    z-index: 1;
+    > * {
+      overflow-x: hidden;
+      transform: translateY(0) scale(1);
+      width: 384px;
+      max-width: calc(100% - #{$base-unit*6});
+      max-height: calc(100% - #{$base-unit*6});
+      border-radius: $base-unit / 2;
+      opacity: 1;
+      @include shadow-high;
+      transition: transform $base-time*3, border-radius $base-time*2, opacity $base-time*2.5;
+      transition-timing-function: ease-out;
+      @media (min-height: 512px + $base-unit*6) {
+        max-height: 512px;
+      }
+    }
+    &.hidden {
+      pointer-events: none;
+      > * {
+        transform: translateY($base-unit*8) scale(0.95);
+        transition: transform $base-time*2, border-radius $base-time*2.5, opacity $base-time*2;
+        border-radius: 320px;
+        opacity: 0;
+        transition-timing-function: ease-in;
+      }
+      ~ * {
+        filter: blur(0);
+        transition: filter $base-time*2;
+        transition-timing-function: ease-in;
+      }
+    }
+    ~ * {
+      filter: blur(6px);
+      transition: filter $base-time*2;
+      transition-timing-function: ease-out;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin: 8px 0;
+    font: bold 20px/24px $brand-font;
+  }
+  h1, h2 { font-style: italic; }
+  header:not(.io-navbar),
+  &.io-header {
+    padding: $base-unit+$opt-unit/2 0;
+    font: 14px/24px $brand-font;
+  }
+  button,
+  input[type="submit"],
+  &.io-button {
+    min-width: $base-unit*8;
+    border-style: none;
+    background-color: transparent;
+    font: bold 14px/24px $brand-font;
+    text-align: center;
+    padding: $base-unit;
+    transition: opacity $base-time*1.5;
+    @media #{$breakpoint} {
+      + button { margin-left: $opt-unit; }
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+  form,
+  &.io-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    :disabled {
+      pointer-events: none;
+			cursor: not-allowed;
+			opacity: $alpha-disabled;
+		}
+    input[type="submit"] {
+      align-self: flex-end;
+      margin-top: $base-unit+$opt-unit/2;
+      margin-right: -$base-unit;
+    }
+    input[type="text"],
+    textarea {
+      border-style: none;
+      background-color: transparent;
+      padding: $base-unit+$opt-unit/2 0;
+      font: inherit;
+      &:focus { outline: none; }
+      &::placeholder {
+  			color: inherit;
+  			opacity: $alpha-secondary;
+  		}
+    }
+    textarea { resize: none; }
+  }
+}

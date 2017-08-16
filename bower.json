@@ -1,0 +1,22 @@
+{
+  "name": "fyi",
+  "authors": [
+    "imogen <im@imogen.fyi>"
+  ],
+  "description": "my website",
+  "main": "",
+  "license": "MIT",
+  "homepage": "http://imogen.fyi",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "source/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-scss": "^3.0.3",
+    "autosize": "^4.0.0"
+  }
+}

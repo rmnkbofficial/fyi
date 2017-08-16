@@ -1,0 +1,19 @@
+- data = current_page.data
+- colors = data.colors
+- artifacts = data.artifacts
+div style="background-color:'#{colors.bg}'; color:'#{colors.text}'"
+  nav
+    button close
+    h2 style="color:'#{colors.brand}'" data.title
+  main
+    section == yield
+    - unless artifacts.empty? || artifacts.nil?
+      section.tab-switcher
+        header
+          - artifacts.each do |group|
+            button = group.name
+        ul
+          - artifacts.each do |group|
+            li.card-slider
+              - group.images.each do |url|
+                img src="#{url}"
