@@ -10,7 +10,7 @@ qs = ((a) ->
   return {} if a == ''
   b = {}
   for i in a
-    p = a[i].split '=' 2
+    p = i.split '=', 2
     if p.length == 1
       b[p[0]] = ''
     else
@@ -28,11 +28,11 @@ config =
     root: "page"
     target: "about"
   container: $("body")
-generateParam = (key, value) ->
-  return "?" + key + "=" + value
+generateSlug = (key, value) ->
+  return "/?" + key + "=" + value
 generatePath = (root, target) ->
-  return [config.html_dir, root, target].join "/"
-renderState = (root, target) ->
+  return [config.html_dir, root, target].join("/") + ".html"
+renderState = (root, target, apply_state = false) ->
   container = config.container
   container.addClass "loading"
   $.get generatePath(root, target), (content) ->
@@ -46,23 +46,27 @@ renderState = (root, target) ->
           .removeClass "hidden"
           .off "transitionend", false
 renderStateFromURL = ->
-  root = this.attr "data-link-root"
-  target = this.attr "data-link-target"
-  renderState root, target
-initializeStateFromURL = ->
+  root = false
   target = false
   $("[data-link-root]:not([data-link-target])").each ->
-    root = this.attr "data-link-root"
+    root = $(this).attr "data-link-root"
+    return true unless root
     target = qs[root]
-    if target
-      renderState root, target
-      break
+    return false if target
+  renderState(root, target) if target
+initializeStateFromURL = ->
+  renderStateFromURL()
   home = config.home
   selector = "[data-link-root=" + home.root + "]:not([data-link-target])"
   $(selector).load generatePath home.root, home.target
 applyState = (root, target) ->
   renderState(root, target)
-  history.pushState null, null, generateParam
+  home = config.home
+  if root == home.root and target == home.target
+    clearState()
+  else
+    renderState(root, target)
+    history.pushState null, null, generateSlug()
 clearState = ->
   $("[data-link-root]:not([data-link-target])").addClass "hidden"
   history.pushState null, null, "/"
@@ -73,6 +77,6 @@ $(document).ready ->
   $("[data-link-root][data-link-target]") .on "click", ->
     root = this.attr "data-link-root"
     target = this.attr "data-link-target"
-    renderState root, target
+    applyState root, target
   $("[data-io-role='close']").on "click", ->
     clearState()

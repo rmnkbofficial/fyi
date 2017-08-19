@@ -7,7 +7,7 @@ div style="background-color:'#{colors.bg}'; color:'#{colors.text}'"
     h2 style="color:'#{colors.brand}'" data.title
   main
     section == yield
-    - unless artifacts.empty? || artifacts.nil?
+    - unless artifacts.nil? # || artifacts.empty?
       section.tab-switcher
         header
           - artifacts.each do |group|
