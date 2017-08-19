@@ -45,9 +45,10 @@ renderState = (root, target) ->
           .html content
           .removeClass "hidden"
           .off "transitionend", false
-applyState = (root, target) ->
-  renderState(root, target)
-  history.pushState null, target, generateParam
+renderStateFromURL = ->
+  root = this.attr "data-link-root"
+  target = this.attr "data-link-target"
+  renderState root, target
 initializeStateFromURL = ->
   target = false
   $("[data-link-root]:not([data-link-target])").each ->
@@ -59,11 +60,19 @@ initializeStateFromURL = ->
   home = config.home
   selector = "[data-link-root=" + home.root + "]:not([data-link-target])"
   $(selector).load generatePath home.root, home.target
+applyState = (root, target) ->
+  renderState(root, target)
+  history.pushState null, null, generateParam
+clearState = ->
+  $("[data-link-root]:not([data-link-target])").addClass "hidden"
+  history.pushState null, null, "/"
 $(document).ready ->
   initializeStateFromURL()
-  $("[data-link-root][data-link-target]").on "click", ->
+  $(window).on "popstate", ->
+    renderStateFromURL()
+  $("[data-link-root][data-link-target]") .on "click", ->
     root = this.attr "data-link-root"
     target = this.attr "data-link-target"
     renderState root, target
   $("[data-io-role='close']").on "click", ->
-    $("[data-link-root]:not([data-link-target])").addClass "hidden"
+    clearState()
